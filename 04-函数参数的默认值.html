@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//函数的参数为什么要有默认值
+			//es5  参数的默认值会避免报错
+			// function animal(name){
+			// 	name = name || '狗';
+			// 	var nn = name.trim();
+			// 	console.log(nn);
+				
+			// }
+			// animal('  猫   ');
+			// animal();
+			
+			//es6函数默认值的写法
+			function animal( name = "狗"){
+				var nn = name.trim();
+				console.log(nn);	
+			}
+			animal('  猫   ');
+			animal();
+			/*
+			注意：参数变量是默认声明的，所以不需要用 let  const再次声明
+			使用参数默认值时，函数不能有同名的参数
+			*/
+		</script>
+	</body>
+</html>

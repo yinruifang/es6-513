@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>async</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//async await  异步转同步，是一种语法糖结构
+			
+			//1.实例
+			// async function hello(){
+			// 	return "hello async";
+			// }
+			// //对于有async 标识的函数，叫做异步函数，返回值是Promise对象
+			// //Promise对象中包含两个值，一个是promise状态（成功或失败），另一个是传递的参数  value
+			// //console.log(hello());//Promise
+			// //因为返回的是promise对象，调用时需要写.then()
+			// hello().then(function(data){
+			// 	console.log(data);
+			// });
+			
+			 //2.实例
+			// function test(){
+			// 	let p = new Promise((resolve)=>{
+			// 		setTimeout(()=>{
+			// 			console.log("text await");
+			// 			resolve();
+			// 		},1000);
+			// 	});
+			// 	return p;
+			// }
+			// //调用
+			// /*
+			// 先输出text await，再输出hi world；原因是  async  await 具有异步转同步的功能
+			// */
+			// async function he(){
+			// 		await test();//等待 test函数返回结果后，程序才能继续运行
+			// 		console.log("hi world");
+			// }
+			// he();
+			
+			
+			//吃鸡的实例
+			/*
+			1.准备   2.炒了  3.炖鸡  4.放调料  5.装盘，吃鸡
+			*/
+			//准备
+			function zhunbei(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						console.log("1.准备，清晰，切块");
+						resolve();
+					},2000);
+				})
+			}
+			//炒鸡
+			function chao(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						console.log("2.炒鸡");
+						resolve();
+					},1000);
+				})
+			}
+			//炖鸡
+			function dun(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						console.log("3.炖鸡");
+						resolve();
+					},3000);
+				})
+			}
+			function tiaoliao(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						console.log("4.给鸡放调料");
+						resolve();
+					},1000);
+				})
+			}
+			function eat(){
+				return new Promise(resolve=>{
+					setTimeout(()=>{
+						console.log("5.吃鸡");
+						resolve();
+					},2000);
+				})
+			}
+			//将异步转同步
+			async function task(){
+				console.log('start...');
+				await zhunbei();
+				await chao();
+				await dun();
+				await tiaoliao();
+				await eat();
+				console.log('end!');
+			}
+			task();
+			
+			//作业：将三页数据改写为 async  await的写法
+		</script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//es5 定义变量是使用var 
+			var aa = 'hello';
+			console.log(aa);
+			
+			//es6 定义变量可以使用 let  
+			let bb = 'world';
+			console.log(bb);
+			
+			//var let 的区别
+			// var name = "小舞";
+			// while(true){
+			// 	var name ="唐三";
+			// 	console.log(name);//?   唐三
+			// 	break;
+			// }
+			// console.log(name);//?  唐三
+			//注意：let有块级作用域，var没有块级作用域的
+			let name = "小舞";
+			while(true){
+				let name ="唐三";
+				console.log(name);//?   唐三
+				break;
+			}
+			console.log(name);//?  小舞
+			
+			//例：
+			/*
+			循环绑定事件时，循环了10次，循环完i的值是10
+			第二步在调用 a[0]()   ---- a[9]()  时， i的值打印出来都是 10
+			*/
+			// var a = [];
+			// for(var i = 0;i<10;i++){
+			// 	a[i] = function(){
+			// 		console.log(i);
+			// 	}
+			// }
+			// //console.log(i);
+			// a[6]();//10
+			
+			// a[6](); 调用它时希望是6，需要使用let，块级作用域
+			//let可以保留循环体的块级作用域
+			var a = [];
+			for(let i = 0;i<10;i++){
+				a[i] = function(){
+					console.log(i);
+				}
+			}
+			//console.log(i);
+			a[6]();//6
+			
+			//注意：let不允许重复声明
+			// let a = '123';
+			// let a = 100;
+			
+			
+			//const  可以声明常量,const 声明的常量不能够再次赋值
+			const PI = 3.14;
+			//PI = 3.1415926; //再次赋值时会报错  Assignment to constant variable
+			console.log(PI);
+			//在项目中的使用：一般在引入第三方库时定义的常量 
+			
+		</script>
+	</body>
+</html>

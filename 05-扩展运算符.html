@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//扩展运算符  ...  可以将 数组或对象转为用逗号分隔开的参数序列
+			// console.log([1,2,3]);
+			// console.log(...[1,2,3]); //解构后，打印出参数序列 1 2 3
+			// console.log(1,...[5,6,7,8]);//1 5 6 7 8 
+			
+			//扩展运算的使用方式
+			//1.函数调用时使用
+			//  9,8,7 被  item接收，rest arguments ,可以接收一组值作为参数
+			// function pp(array,...item){
+			// 	array.push(...item);
+			// 	return array;	
+			// }
+			// var result = pp([1,2],9,8,7); 
+			// console.log(result);//[1,2,9,8,7]
+			
+			//2.可以用于替换数组的方法 apply
+			//apply  ,call  作用是改变指针指向, 
+			//apply和call的区别：call() 方法分别接受参数。apply() 方法接受数组形式的参数。
+			//对一组数找最大值
+			console.log(Math.max(2,9,5,7,3));
+			//对数组找最大值
+			console.log(Math.max.apply(null,[2,9,5,7,3]));
+			console.log(Math.max(...[2,9,5,7,3]));//都能解决问题的前提下，扩展运算符使用起来更方便
+			
+			//3.数组连接
+			var arr1 = [1,2,3];
+			var arr2 = [4,5,6];
+			arr1.push(...arr2);
+			console.log(arr1);
+			
+			//4.和解构一起使用
+			// var [first,...last] = [1,2,3,4,5,6];
+			// console.log(first);//?1
+			// console.log(last);//?2,3,4,5,6
+			var [first,sec,...last] = [1,2,3,4,5,6];
+			// console.log(first);//?1
+			// console.log(sec);//?2
+			// console.log(last);//?3,4,5,6
+			
+			//var [...first,last] = [1,2,3,4,5,6];//Rest element must be last element  ,有扩展运算符的变量必须在最后面
+			
+			var [first,...rest] = ["foo"];
+			console.log(first);//? foo
+			console.log(rest);//? []
+			
+			//5.字符串转数组
+			console.log('hello');
+			console.log([...'hello']);
+			//6.map中的使用
+			var map = new Map([
+				[1,'one'],
+				[2,'two'],
+				[3,'three']
+			]);
+			//取map中的key作为一个数组
+			console.log([...map.keys()]);
+			console.log([...map.values()]);
+			
+			
+			//7.和 generator一起使用
+			var go = function *(){
+				yield 1;
+				yield 2;
+				yield 3;
+			}
+			console.log([...go()]);
+		</script>
+	</body>
+</html>

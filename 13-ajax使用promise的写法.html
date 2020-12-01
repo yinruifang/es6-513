@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{border:2px dotted green;}
+		</style>
+		<script type="text/javascript" src="./js/jquery.min.js">
+			
+		</script>
+	</head>
+	<body>
+		promise用来解决异步操作的回调地狱问题的
+		<h2>旅游列表</h2>
+		<ul id="box"></ul>
+		<script type="text/javascript">
+			$(function(){
+				//使用promise获取数据的函数
+				function getJSON(){
+					let p = new Promise((resolve,reject)=>{
+						//获取数据
+						$.getJSON("./json/01.json",function(res){
+							resolve(res);
+						});
+					});
+					return p;
+				}
+				
+				//调用
+				getJSON().then(function(res){//成功的回调
+					let data = res.matchedProducts;
+					for(var i = 0;i<data.length;i++){
+						var $li = $(`<li>序号：${data[i].collection_num}-- 标题：${data[i].pro_title}</li>`);
+						$('#box').append($li);
+					}
+				},function(err){//失败的回调
+					
+				});
+				
+				
+				
+				
+			})
+			//代码，由于ajax是异步的，导致，返回数据的顺序有可能存在问题
+			
+			/*
+			//获取数据
+			$.getJSON("./json/01.json",function(res){
+				let data = res.matchedProducts;
+				for(var i = 0;i<data.length;i++){
+					var $li = $(`<li>序号：${data[i].collection_num}-- 标题：${data[i].pro_title}</li>`);
+					$('#box').append($li);
+				}
+				
+			});
+			*/
+		   //请把候鸟的首页数据获取改写为 promise格式
+		   //百度，三个页，使用promise的解决办法
+		   //百度，三个页，搜索，promise.all的使用方法，
+		</script>
+		
+	</body>
+</html>

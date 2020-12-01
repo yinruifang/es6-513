@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//类和类的继承
+			//js是没有类的概念的，js类是一种语法糖
+			
+			class Animal{
+				//构造函数，给类里面的变量进行初始化操作的，构造函数在类的实例化时，会自动调用
+				constructor(arg) {
+				   this.type = 'animal'; 
+				}
+				//类里面的方法
+				say(name){
+					console.log(this.type + 'says:'+ name);
+				}
+				
+				swimming(){
+					console.log(this.type + "在游泳");
+				}
+				
+			}
+			
+			//实例化类
+			let animal1 = new Animal();
+			//调用了类里面的方法
+			animal1.say("大黄");
+			animal1.swimming();
+			animal1.sing();
+			
+			//子类可以继承父类的内容
+			class Dog extends Animal{
+				constructor(arg) {
+					super();//如果子类里面想要使用this，必须在this使用前面调用 super
+					//原因是：子类没有自己的this指向，必须使用 super函数来继承父类的this指向
+				    this.type = 'dog';
+				}
+				
+				sing(){
+					console.log(this.type + '会唱歌');
+				}
+				
+			}
+			
+			let dog1 = new Dog();
+			dog1.say('神警');
+			dog1.sing();
+			
+			
+		</script>
+	</body>
+</html>

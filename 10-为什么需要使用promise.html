@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box{border:2px dotted green;}
+		</style>
+		<script type="text/javascript" src="./js/jquery.min.js">
+			
+		</script>
+	</head>
+	<body>
+		promise用来解决异步操作的回调地狱问题的
+		<h2>旅游列表</h2>
+		<ul id="box"></ul>
+		<script type="text/javascript">
+			$(function(){
+				//获取数据
+				$.getJSON("./json/01.json",function(res){
+					let data = res.matchedProducts;
+					for(var i = 0;i<data.length;i++){
+						var $li = $(`<li>序号：${data[i].collection_num}-- 标题：${data[i].pro_title}</li>`);
+						$('#box').append($li);
+					}
+					
+				});
+				$.getJSON("./json/02.json",function(res){
+					let data = res.matchedProducts;
+					for(var i = 0;i<data.length;i++){
+						var $li = $(`<li>序号：${data[i].collection_num}-- 标题：${data[i].pro_title}</li>`);
+						$('#box').append($li);
+					}
+					
+				});
+				$.getJSON("./json/03.json",function(res){
+					let data = res.matchedProducts;
+					for(var i = 0;i<data.length;i++){
+						var $li = $(`<li>序号：${data[i].collection_num}-- 标题：${data[i].pro_title}</li>`);
+						$('#box').append($li);
+					}
+					
+				});
+			})
+			//代码，由于ajax是异步的，导致，返回数据的顺序有可能存在问题
+		</script>
+		
+	</body>
+</html>

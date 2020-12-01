@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//es7-9
+			//1.指数运算 **
+			console.log(2**3);
+			//es5
+			console.log(Math.pow(2,3));
+			
+			//2.数组方法 includes 是否存在该元素
+			let arr = [1,2,3,4];
+			if(arr.includes(6)){
+				console.log("有");
+			}else{
+				console.log("没有");
+			}
+			//includes 可以适用于字符串
+			let str = '1,2,3,4'; 
+			if(str.includes('3')) {
+				console.log("有");
+			}else{
+				console.log("没有");
+			}
+			
+			//3.Object.values 获取到对象中的所有 值  Object.keys 获取到对象中的所有 键
+			var obj = {"name":"lili","age":18,"sex":"女"};
+			console.log(Object.keys(obj));
+			console.log(Object.values(obj));
+			
+			//4.padStart  可以使用*补足字符串不足的位数，在字符串前补足   			//padEnd     可以使用*补足字符串不足的位数，在字符串后补足			console.log('hi'.padStart(10,'&'));
+			console.log('hello'.padEnd(10,'*'));
+			
+			//5.trimStart 前面去空格 trimEnd 后面去空格
+			console.log('           hi            '.trimStart());
+			console.log('             hello           '.trimEnd());
+
+		</script>
+	</body>
+</html>

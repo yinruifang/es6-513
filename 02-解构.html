@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//解构 或者叫解构赋值
+			let zoo = {'type':'animal','name':'dog',age:2};
+			// let name = zoo.name;
+			// let type = zoo.type;
+			// let age = zoo.age;
+			
+			//es6的解构写法
+			//es6允许按照一定的模式从数组或对象中提取值，对变量进行赋值，被称为解构
+			// let {type,name,age} = zoo;
+			// console.log(name,type,age);
+			
+			let {name} = zoo; 
+			console.log(name);
+			
+			let arr = [1,2,3,4,5];
+			let [a,b,c,d,e] = arr;
+			console.log(a,b,c,d,e);
+			//问题：将第一个数据解构出来，其余的数据保存在另一个变量里，考虑使用 扩展运算符...
+			
+		</script>
+	</body>
+</html>

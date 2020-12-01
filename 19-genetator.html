@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//			解决地狱回调问题有三种方式： promise,async await, generator
+			/*
+			generator 迭代器  ，
+			这种语法经常使用于，redux上  redux-saga上
+			*/
+
+			/*
+			generator （生成器） ，是属于es6的扩展语法，解决了两大问题：1.迭代器（循环），2.解决了异步编程的回调地狱问题
+		   */
+
+			//一.generator基础
+			//1.实例
+			// function * hello() {
+			// 	console.log("第一个生成器实例");
+			// }
+			// hello();//加了* 的函数，在调用时，需要使用 .next()
+			// hello().next();
+			
+			//2.实例
+			function *  he(){
+				yield "hello";
+				yield "hi";
+				yield 45;
+				return ;
+			}
+			
+			var h = he();
+			console.log(h.next());//{done:false,value:'hello'}
+			console.log(h.next());//
+			console.log(h.next());//
+			console.log(h.next());//{done:true,value:undefined}  done:true 表示迭代结束了
+			
+			//3.解决地狱回调问题
+			//准备工作
+			function zhunbei(success){
+				setTimeout(function(){
+					console.log("1.准备 鸡肉，洗好、切块");
+					success();
+				},2000);
+			}
+			//炒鸡
+			function chaoji(success){
+				setTimeout(function(){
+					console.log("2.炒鸡");
+					success();
+				},2000);
+			}
+			//炖鸡
+			function dunji(success){
+				setTimeout(function(){
+					console.log("3.炖鸡");
+					success();
+				},2000);
+			}
+			//加调料
+			function tiaoliao(success){
+				setTimeout(function(){
+					console.log("4.加调料");
+					success();
+				},2000);
+			}
+			//吃鸡
+			function eat(success){
+				setTimeout(function(){
+					console.log("5.吃鸡");
+					success();
+				},2000);
+			}
+			
+			//流程控制
+			function run(fn){
+				const gen = fn();
+				function next(){
+					const result = gen.next();
+					if(result.done) return ;//吃鸡的流程结束了
+					result.value(next);//next作为入参，在执行下一个工序
+				}
+				next();
+			}
+			
+			//工序
+			function * task(){
+				yield zhunbei;
+				yield chaoji;
+				yield dunji;
+				yield tiaoliao;
+				yield eat;
+			}
+			
+			//调用
+			run(task);
+			
+			/*
+			Promise是基础，Generator和async/await串连多个Promise的同步执行，也就是把Promise的异步特性变为同步，编程更爽。
+			当然Generator的yield也可以跟非Promise类型的对象，对于Generator更可以理解为迭代器。而async/await则是多个Promise同步执行的简单方法。
+			*/
+		</script>
+	</body>
+</html>

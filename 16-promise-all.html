@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width" />
+		<title>
+			候鸟数据
+		</title>
+		<script src="./js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul id="box"></ul>
+		<script type="text/javascript">
+			//promise.all
+			$(function(){
+				//创建promise对象
+				const p1 = new Promise((resolve)=>{
+					$.getJSON("./json/01.json",function(res){
+						resolve(res.matchedProducts);
+					});
+				});
+				const p2 = new Promise((resolve)=>{
+					$.getJSON("./json/02.json",function(res){
+						resolve(res.matchedProducts);
+					});
+				});
+				const p3 = new Promise((resolve)=>{
+					$.getJSON("./json/03.json",function(res){
+						resolve(res.matchedProducts);
+					});
+				});
+				
+				
+				//渲染页面
+				function writeHtml(res){
+					for(var i = 0;i <res.length;i++){
+						var $li = $(`<li>序号：${res[i].collection_num},${res[i].pro_title}</li>`);
+						$('#box').append($li);
+					}
+				}
+				
+				//使用promise.all 调用,可以解决多个异步回调数据的同步问题，
+				//缺点：如果有一个promise出错，那么后面的都不能执行
+				//解决方法：可以使用Promise.allSettled()；
+				Promise.all([p1,p2,p3]).then((data)=>{
+					for(var i = 0;i<data.length;i++){
+						writeHtml(data[i]);
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
